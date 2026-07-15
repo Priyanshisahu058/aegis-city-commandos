@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+/* ── Custom Theme Variables ───────────────────────────────────────────────── */
+:root {
+  --bg-deep: #14132b;
+  --bg-panel: rgba(22, 20, 54, 0.7);
+  --bg-card: rgba(30, 27, 68, 0.6);
+  --border-glow: rgba(63, 198, 232, 0.2);
+  --accent-cyan: #3fc6e8;
+  --accent-orange: #f39c3d;
+  --accent-purple: #9b59d4;
+  --text-primary: #e8f4f8;
+  --text-secondary: #8ba8ba;
+  --text-muted: #4a6070;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Scrollbar Styling ────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(63, 198, 232, 0.3);
+  border-radius: 2px;
+}
+
+/* ── Glass Card ───────────────────────────────────────────────────────────── */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+.glass-card:hover {
+  border-color: rgba(63, 198, 232, 0.4);
+  box-shadow: 0 0 24px rgba(63, 198, 232, 0.08);
+}
+
+/* ── Grid Background ──────────────────────────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(63, 198, 232, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63, 198, 232, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Glow Text ────────────────────────────────────────────────────────────── */
+.glow-cyan {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 12px rgba(63, 198, 232, 0.5);
+}
+.glow-orange {
+  color: var(--accent-orange);
+  text-shadow: 0 0 12px rgba(243, 156, 61, 0.5);
+}
+
+/* ── Pulse Animations ────────────────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+.pulse-red::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.4);
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+.pulse-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── Status Dot ──────────────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.status-blink {
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+/* ── Sidebar transition ───────────────────────────────────────────────────── */
+.sidebar-item {
+  transition: all 0.15s ease;
+  border-radius: 10px;
+}
+.sidebar-item:hover {
+  background: rgba(63, 198, 232, 0.08);
+  color: var(--accent-cyan);
+}
+.sidebar-item.active {
+  background: rgba(63, 198, 232, 0.12);
+  color: var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+}
+
+/* ── Button styles ────────────────────────────────────────────────────────── */
+.btn-cyan {
+  background: rgba(63, 198, 232, 0.15);
+  border: 1px solid rgba(63, 198, 232, 0.4);
+  color: var(--accent-cyan);
+  border-radius: 8px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.btn-cyan:hover {
+  background: rgba(63, 198, 232, 0.25);
+  box-shadow: 0 0 12px rgba(63, 198, 232, 0.2);
+}
+.btn-orange {
+  background: rgba(243, 156, 61, 0.15);
+  border: 1px solid rgba(243, 156, 61, 0.4);
+  color: var(--accent-orange);
+  border-radius: 8px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.btn-orange:hover {
+  background: rgba(243, 156, 61, 0.25);
+  box-shadow: 0 0 12px rgba(243, 156, 61, 0.2);
+}
+.btn-red {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
+  border-radius: 8px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.btn-red:hover {
+  background: rgba(239, 68, 68, 0.22);
+}
+.btn-green {
+  background: rgba(74, 222, 128, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  color: #4ade80;
+  border-radius: 8px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.btn-green:hover {
+  background: rgba(74, 222, 128, 0.22);
+}
+
+/* ── Progress bar ─────────────────────────────────────────────────────────── */
+.progress-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+/* ── Map node pulse ───────────────────────────────────────────────────────── */
+@keyframes node-pulse {
+  0%, 100% { r: 8; opacity: 0.9; }
+  50% { r: 11; opacity: 0.6; }
+}
+.map-node-critical {
+  animation: node-pulse 1.2s ease-in-out infinite;
+}
+
+/* ── Recharts custom ─────────────────────────────────────────────────────── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: rgba(22, 20, 54, 0.95) !important;
+  border: 1px solid rgba(63, 198, 232, 0.3) !important;
+  border-radius: 8px !important;
+}
